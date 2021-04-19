@@ -3,28 +3,21 @@
     <h1>{{ event.title }}</h1>
     <p>@ {{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
     <p>{{ event.description }}</p>
+    <p>Attendees: </p>
+    <span class="badge -fill-gradient">{{ event.attendees ? event.attendees.length : 0 }}</span>
   </div>
 </template>
 
 <script>
-import EventService from '@/services/EventServices.js'
+
+import {mapState} from 'vuex'
 
 export default {
   props: ['id'],
-  data() {
-    return {
-      event: null,
-    }
-  },
   created() {
     //fetch event by id and set local data
-    EventService.getEvent(this.id)
-      .then((response) => {
-        this.event = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    this.$store.dispatch('fetchEvent', this.id)
   },
+  computed: mapState(['event'])
 }
 </script>
