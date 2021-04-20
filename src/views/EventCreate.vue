@@ -49,6 +49,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     const times = []
@@ -65,7 +66,7 @@ export default {
   },
   methods: {
     createFreshEvent() {
-      const user = this.$store.state.user
+      const user = this.$store.state.user.user
       const id = Math.floor(Math.random() * 10000000)
       return {
         id: id,
@@ -80,8 +81,8 @@ export default {
       }
     },
     createEvent() {
-        this.$store.dispatch('createEvent', this.event).then(() => {
-            console.log(this.event.id)
+        this.$store.dispatch('event/createEvent', this.event).then(() => {
+            console.log('event id: '+this.event.id+' ID')
             this.$router.push({
                 name: 'EventDetails',
                 params: {id: this.event.id}

@@ -15,8 +15,12 @@
 export default {
   name: 'EventCard',
   props: {
-    event: { type: Object, required: true },
+    event: { type: Object },
   },
+  created() {
+    console.log('Event Card was Created: '+this.event.id )
+    console.log(this.event)
+  }
 }
 </script>
 
