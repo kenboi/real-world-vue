@@ -5,8 +5,18 @@
     <router-link :to="{ name: 'EventCreate' }">Create</router-link> |
     <router-link :to="{ name: 'Playground' }">Playground</router-link>
   </div>
+  <NotificationContainer/>
   <router-view :key="$route.fullPath"/>
 </template>
+
+<script>
+import NotificationContainer from '@/components/NotificationContainer.vue'
+export default {
+  components: {
+    NotificationContainer
+  }
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -31,5 +41,8 @@
 
 h4 {
   font-size: 20px;
+}
+.-text-error{
+  color:red
 }
 </style>

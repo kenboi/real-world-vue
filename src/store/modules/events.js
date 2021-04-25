@@ -34,14 +34,26 @@ export const actions = {
             commit('INCREMENT_COUNT', incrementBy)
         }
     },
-    createEvent({ commit, rootState }, event) {
+    createEvent({ commit, rootState, dispatch }, event) {
         // dispatch('moduleName/actionToCall', null, { root: true }) <-- example tog et action from difffernet module
         console.log('User creating Event is ' + rootState.user.user.name)
         return EventServices.postEvent(event).then(() => {
             commit('ADD_EVENT', event)
+            const notification = {
+                type: 'success',
+                message: 'Your event has been created! '
+            }
+            dispatch('notification/add', notification,  {root: true})
+        }).catch(error => {
+            const notification = {
+                type: 'error',
+                message: 'There was a problem creating your event: '+ error.message
+            }
+            dispatch('notification/add', notification,  {root: true})
+            throw error
         })
     },
-    fetchEvents({ commit }, { perPage, page }) {
+    fetchEvents({ commit, dispatch }, { perPage, page }) {
         EventServices.getEvents(perPage, page)
             .then(response => {
                 console.log('Total events are  ' + response.headers['x-total-count'])
@@ -49,10 +61,14 @@ export const actions = {
                 commit('SET_EVENTS', response.data)
             })
             .catch(error => {
-                console.log('There was an error:', error.response)
+                const notification = {
+                    type: 'error',
+                    message: 'There was a problem fetching events: '+ error.message
+                }
+                dispatch('notification/add', notification,  {root: true})
             })
     },
-    fetchEvent({ commit, getters }, id) {
+    fetchEvent({ commit, getters, dispatch }, id) {
 
         console.log('fetchEvent action entered with ID: '+ id)
         var event = getters.getEventById(id)
@@ -68,7 +84,11 @@ export const actions = {
                     commit('SET_EVENT', response.data)
                 })
                 .catch(error => {
-                    console.log('There was an error: ',error.response)
+                    const notification = {
+                        type: 'error',
+                        message: 'There was a problem fetching event: '+ error.message
+                    }
+                    dispatch('notification/add', notification,  {root: true})
                 })
         }
     }
