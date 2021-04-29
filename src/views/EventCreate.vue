@@ -49,7 +49,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     const times = []
@@ -81,18 +80,18 @@ export default {
       }
     },
     createEvent() {
-        this.$store.dispatch('event/createEvent', this.event).then(() => {
-            console.log('event id: '+this.event.id+' ID')
-            this.$router.push({
-                name: 'EventDetails',
-                params: {id: this.event.id}
-            })
-            this.event = this.createFreshEvent()
+      this.$store
+        .dispatch('event/createEvent', this.event)
+        .then(() => {
+          console.log('event id: ' + this.event.id + ' ID')
+          this.$router.push({
+            name: 'EventDetails',
+            params: { id: this.event.id },
+          })
+          this.event = this.createFreshEvent()
         })
-        .catch(()=>{
-            
-        })
-    }
+        .catch(() => {})
+    },
   },
 }
 </script>

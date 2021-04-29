@@ -4,9 +4,16 @@ import router from './router'
 import store from './store'
 import PrimeVue from 'primevue/config'
 import Calendar from 'primevue/calendar'
-import 'primevue/resources/themes/saga-blue/theme.css'       //theme
-import 'primevue/resources/primevue.min.css'                 //core css
-import 'primeicons/primeicons.css'                           //icons
+import 'primevue/resources/themes/saga-blue/theme.css' //theme
+import 'primevue/resources/primevue.min.css' //core css
+import 'primeicons/primeicons.css' //icons
+import 'nprogress/nprogress.css'
 
+//const GStore = reactive({ flashMessage: ''}) //<-- if no vuex global variables
 
-createApp(App).use(store).use(router).use(PrimeVue).component('Calendar', Calendar).mount('#app')
+createApp(App)
+  .use(store)
+  .use(router)
+  .use(PrimeVue)
+  .component('Calendar', Calendar)
+  .mount('#app')

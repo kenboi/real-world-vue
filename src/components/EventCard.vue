@@ -18,9 +18,9 @@ export default {
     event: { type: Object },
   },
   created() {
-    console.log('Event Card was Created: '+this.event.id )
+    console.log('Event Card was Created: ' + this.event.id)
     console.log(this.event)
-  }
+  },
 }
 </script>
 

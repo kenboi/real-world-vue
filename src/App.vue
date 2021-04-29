@@ -5,16 +5,16 @@
     <router-link :to="{ name: 'EventCreate' }">Create</router-link> |
     <router-link :to="{ name: 'Playground' }">Playground</router-link>
   </div>
-  <NotificationContainer/>
-  <router-view :key="$route.fullPath"/>
+  <NotificationContainer />
+  <router-view :key="$route.fullPath" />
 </template>
 
 <script>
 import NotificationContainer from '@/components/NotificationContainer.vue'
 export default {
   components: {
-    NotificationContainer
-  }
+    NotificationContainer,
+  },
 }
 </script>
 <style>
@@ -33,6 +33,7 @@ export default {
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  margin: 0.5em;
 }
 
 #nav a.router-link-exact-active {
@@ -42,7 +43,7 @@ export default {
 h4 {
   font-size: 20px;
 }
-.-text-error{
-  color:red
+.-text-error {
+  color: red;
 }
 </style>

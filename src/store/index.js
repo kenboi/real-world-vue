@@ -18,7 +18,7 @@ export default createStore({
   modules: {
     user,
     event,
-    notification
+    notification,
   },
   plugins:
     process.env.NODE_ENV !== 'production' //FOR LOGGING MUTATIONS AND OTHER STUFF, WILL LOOK MORE INTO IT
